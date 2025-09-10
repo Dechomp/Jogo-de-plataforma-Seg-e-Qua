@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Sprites",
-    "path":"folders/Sprites.yy",
+    "name":"Montanhas",
+    "path":"folders/Sprites/Montanhas.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

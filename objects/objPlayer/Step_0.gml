@@ -1,20 +1,20 @@
 #region Movimentação
 	//Movimentação por letras
 	//Futuramente você pode deixar o usuário escolher as teclas
-	//cima = "W"
-	teclaCima = keyboard_check(ord("W"))
+	
+	teclaCima = keyboard_check_pressed(ord("W"))
 	teclaBaixo = keyboard_check(ord("S"))
 	teclaEsq = keyboard_check(ord("A"))
 	teclaDir = keyboard_check(ord("D"))
 	
 	//Movimentação por setas
-	setaCima = keyboard_check(vk_up)
+	setaCima = keyboard_check_pressed(vk_up)
 	setaBaixo = keyboard_check(vk_down)
 	setaEsq = keyboard_check(vk_left)
 	setaDir = keyboard_check(vk_right)
 	
 	//Barra de espaço
-	barraEspaco = keyboard_check(vk_space)
+	barraEspaco = keyboard_check_pressed(vk_space)
 	
 	//Movimentação horizontal
 	moviHorizontal = -(teclaEsq or setaEsq) + (teclaDir or setaDir) 
@@ -34,18 +34,26 @@
 	colisaoHorizontalContraria = place_meeting(x + sign(velocidadeHorizontal), y,  objChao) or place_meeting(x + sign(velocidadeHorizontal), y, objChaoCanto)
 	
 	if colisaoHorizontal{
-		while !colisaoHorizontal{
+		while !colisaoHorizontalContraria{
 			x += sign(velocidadeHorizontal)
 			colisaoHorizontalContraria = place_meeting(x + sign(velocidadeHorizontal), y,  objChao) or place_meeting(x + sign(moviHorizontal * velocidade), y, objChaoCanto)
+			if colisaoHorizontalContraria{
+				x += sign(velocidadeHorizontal) * 10
+			}
 		}
+		
 		velocidadeHorizontal = 0
 	}
 	
 	if colisaoBaixo{
 		while ! colisaoBaixoContrario{
-			y+= sign(velocidadeVertical)
+			y += sign(velocidadeVertical)
 			colisaoBaixoContrario = place_meeting(x, y + sign(velocidadeVertical), objChao) or place_meeting(x, y + sign(velocidadeVertical), objChaoCanto) 
+			if colisaoHorizontalContraria{
+				y += sign(velocidadeVertical) * 10
+			}
 		}
+		
 		velocidadeVertical = 0
 	}
 	
@@ -53,7 +61,7 @@
 	y += velocidadeVertical
 	
 	if colisaoBaixo and moviVertical{
-		velocidadeVertical -= 16
+		velocidadeVertical -= 14
 	}
 	
 	if moviHorizontal < 0 and image_xscale > 0{
@@ -81,5 +89,27 @@
 
 	
 	move_and_collide(moviHorizontal, moviVertical, (objChaoCanto or objChao))*/
+	
+	
+
+#endregion
+
+#region Controle da vida
+	if y >= room_height{
+		room_restart()
+		global.vidas--
+	}
+	
+	if global.vidas == 0{
+		global.vidas = 5
+		global.pontos = 0
+		room_restart()
+	}
+	
+	if global.pontos == 10{
+		global.vidas++
+		global.pontos = 0
+		
+	}
 
 #endregion
