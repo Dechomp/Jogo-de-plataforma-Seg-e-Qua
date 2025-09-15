@@ -19,11 +19,27 @@
 			window_set_fullscreen(true)
 		}
 	}
-	
-	
-	
 #endregion
 
+#region Controle da vida
+	//Morre caso caia
+	if objPlayer.y >= room_height{
+		room_restart()
+		global.vidas -- 
+	}
+	
+	//Reseta caso perca todas as vidas
+	if global.vidas == 0{
+		global.vidas = 5
+		global.pontos = 0
+	}
+	
+	//Aumenta a quantidade de vidas a cada 10 pontos
+	if global.pontos >= 10{
+		global.vidas++
+		global.pontos = 0
+	}
+#endregion
 
 
 

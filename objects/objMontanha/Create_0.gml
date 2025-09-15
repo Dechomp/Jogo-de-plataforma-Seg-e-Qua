@@ -7,5 +7,5 @@ else if fundo >= 2{
 	sprite_index = sprMontanhaFossilTRex
 }
 else{
-	sprite_index = sprMontanhaFossilTriceratopis
+	sprite_index = sprMontanhaFossilTriceratops
 }

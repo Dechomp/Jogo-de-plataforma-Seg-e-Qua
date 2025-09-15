@@ -145,9 +145,7 @@
 
 
 #region Controle da vida
-	if y >= room_height{
-		room_restart()
-	}
+	
 
 
 
