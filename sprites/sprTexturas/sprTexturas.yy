@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Montanhas",
-    "path":"folders/Sprites/Montanhas.yy",
+    "name":"Jogo de Plataforma",
+    "path":"Jogo de Plataforma.yyp",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -8,10 +8,8 @@ velocidadeHorizontal = 0
 //gravity = gravidade
 
 
-global.pontos = 0
-global.vidas = 5
 
-/*
+
 if !variable_global_exists("pontos") {
 	global.pontos = 0
 }
@@ -19,4 +17,3 @@ if !variable_global_exists("pontos") {
 if !variable_global_exists("vidas"){
 	global.vidas = 5	
 }
-*/
