@@ -2,7 +2,7 @@
   "$GMSprite":"",
   "%Name":"sprChao",
   "bboxMode":2,
-  "bbox_bottom":18,
+  "bbox_bottom":24,
   "bbox_left":0,
   "bbox_right":63,
   "bbox_top":0,
