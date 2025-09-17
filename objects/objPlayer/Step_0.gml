@@ -104,16 +104,16 @@
 	
 	
 	//Colisão abaixo
-	if (place_meeting(x, y + velocidadeVertical, objChao ) or place_meeting(x, y + velocidadeVertical, objChaoCanto)) and velocidadeVertical > 0{
-		while ! (place_meeting(x, y + sign(velocidadeVertical), objChao ) or place_meeting(x, y + sign(velocidadeVertical), objChaoCanto)) and sign(velocidadeVertical) < 0{
+	if place_meeting(x, y + velocidadeVertical, objColisao) and velocidadeVertical > 0{
+		while ! place_meeting(x, y + sign(velocidadeVertical), objColisao) and sign(velocidadeVertical) < 0{
 			y += sign(velocidadeVertical)
 		}
 		velocidadeVertical = 0
 	}
 	
 	//Colisão pra esquerda e direita
-	if place_meeting(x + moviHorizontal, y, objChao) or place_meeting(x + moviHorizontal, y, objChaoCanto){
-		while ! (place_meeting(x + sign(moviHorizontal),y, objChao) or place_meeting(x + sign(moviHorizontal),y, objChaoCanto)){
+	if place_meeting(x + moviHorizontal, y, objColisao){
+		while ! place_meeting(x + sign(moviHorizontal),y, objColisao){
 			x += sign(velocidadeHorizontal)
 		}
 		velocidadeHorizontal = 0
@@ -123,8 +123,8 @@
 	x += velocidadeHorizontal
 	y += velocidadeVertical
 	
-	if (place_meeting(x, y + 1, objChao ) or place_meeting(x, y + 1, objChaoCanto)) and moviVertical{
-		velocidadeVertical -= 16
+	if place_meeting(x, y + 1, objColisao )  and moviVertical{
+		velocidadeVertical -= forcaPulo
 	}
 	
 	if moviHorizontal < 0 and image_xscale > 0{
@@ -137,7 +137,22 @@
 
 #endregion
 
+#region Colisão Inimigos
+	//Primeiro checar se a colisão foi encima do inimigo
+	//Senão, mata o player
+	
+	if place_meeting(x, y + 5, objTriceratops){
+		identificador = instance_place(x, y + 0, objTriceratops)
+		instance_destroy(identificador)
+		
+		global.pontos += 5
+	}
+	else if place_meeting(x, y, objTriceratops){
+		global.vidas--
+		room_restart()
+	}
 
+#endregion
 
 
 

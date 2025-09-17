@@ -7,7 +7,7 @@ velocidadeVertical = 0
 velocidadeHorizontal = 0
 //gravity = gravidade
 
-
+forcaPulo = 16
 
 
 if !variable_global_exists("pontos") {
